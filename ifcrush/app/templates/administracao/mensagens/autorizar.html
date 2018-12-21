@@ -1,0 +1,43 @@
+{% extends '../base.html' %}
+
+{% block titulo %}
+Gerenciar Mensagem
+{% endblock titulo %}
+
+{% block conteudo %}
+<h2>Gerenciar Mensagem</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-12">
+            <label for="usuario">Usuario responsável pela mensagem</label>
+            {{ form.usuario }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {{ form.titulo }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {{ form.mensagem }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <label for="autorizado">Autorizar?</label>
+            {{ form.autorizado}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <label for="feedback">Feedback</label>
+            {{ form.feedback }}
+        </div>
+    </div>
+    <br>
+    <input class="btn btn-success" type="submit" value="Salvar">
+    <a class='btn btn-danger' href="{% url 'autorizar_mensagem' %}">Cancelar</a>
+</form>
+{% endblock conteudo %}

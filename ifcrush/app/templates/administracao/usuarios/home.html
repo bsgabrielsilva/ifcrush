@@ -1,0 +1,82 @@
+{% extends '../base.html' %}
+
+{% block titulo %}
+Usuários do IFAP
+{% endblock titulo %}
+
+{% block conteudo %}
+<br>
+<div class="row">
+    <div class="col-12">
+        <h1 class="float-left">Usuários</h1>
+    <a href="{% url 'painel_administrativo' %}" class="btn btn-primary float-right">Voltar</a>
+
+    </div>
+
+</div>
+
+<form method="get">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-8">
+            <input class="form-control" name="buscar" type="text" placeholder="Buscar apelido">
+        </div>
+        <div class="col-4">
+            <input type="submit" class="btn btn-success" value="Buscar">
+        </div>
+    </div>
+</form>
+<hr>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>IP</th>
+                <th>Turma</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for c in lista %}
+            <tr>
+                <td>{{ c.user.first_name }}</td>
+                <td>{{ c.user.username }}</td>
+                <td>{{ c.user.email }}</td>
+                <td>{{ c.ip_celular }}</td>
+                <td>{{ c.turma.nome_turma }}</td>
+                <td>
+                    <a title="Informações" href="{% url 'info_usuario' pk=c.pk %}">
+                        <i class="material-icons">info</i>
+                    </a>
+                    <!-- Confirmação de exclusão -->
+                    <a title="Remover" href="#" data-toggle="modal" data-target="#confirm{{ c.pk }}">
+                        <i class="material-icons">delete</i>
+                    </a>
+                    <div class="modal fade" id="confirm{{ c.pk }}" role="dialog">
+                        <div class="modal-dialog modal-md">
+
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <p> Tem certeza que deseja excluir o usuário?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <a class="btn btn-danger" href="{% url 'remover_usuario' c.pk %}">Excluir</a>
+                                    <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% with lista as paginated %}
+        {% include "../pagination.html" %}
+    {% endwith %}
+</div>
+{% endblock conteudo %}

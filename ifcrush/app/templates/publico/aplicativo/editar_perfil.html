@@ -1,0 +1,54 @@
+{% extends '../base.html' %}
+
+{% block titulo %}
+Editar
+{% endblock titulo %}
+
+{% block conteudo %}
+<br>
+<form method="post">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-12">
+            <label for="first_name">Nome</label>
+            {{ form.first_name }}
+        </div>
+        <div class="col-12">
+            <label for="last_name">Sobrenome</label>
+            {{ form.last_name }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <label for="username">Apelido</label>
+            {{ form.username }}
+        </div>
+        <div class="col-12">
+            <label for="email">Email</label>
+            {{ form.email }}
+        </div>
+    </div>
+     <div class="row">
+        <div class="col-12">
+            <label for="data_nascimento">Data de Nascimento</label>
+            {{ form2.data_nascimento }}
+        </div>
+        <div class="col-12">
+            <label for="turma">Turma</label>
+            {{ form2.turma }}
+        </div>
+    </div>
+     <div class="row">
+        <div class="col-12">
+            <label for="password">Senha</label>
+            {{ form.password }}
+        </div>
+    </div>
+    <br>
+    <div class="text-center">
+        <input type="submit" class="btn btn-success" value="Atualizar" />
+    </div>
+
+</form><br>
+
+{% endblock conteudo %}

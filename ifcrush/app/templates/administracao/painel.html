@@ -1,0 +1,158 @@
+{% extends './base.html' %}
+
+{% block titulo %}
+Painel Administrativo
+{% endblock titulo %}
+
+{% block conteudo %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 align="center">Gerenciamento</h3>
+                <ul class="list-group">
+                    <a href="{% url 'home_mensagem' %}"><li class="list-group-item list-group-item-action"><i class="material-icons">message</i>Mensagens</li></a>
+                    <a href="{% url 'home_turma' %}"><li class="list-group-item list-group-item-action"><i class="material-icons">meeting_room</i>Turmas</li></a>
+                    <a href="{% url 'home_usuario' %}"><li class="list-group-item list-group-item-action"><i class="material-icons">people</i>Usuários</li></a>
+                    {% if request.user.is_authenticated and request.user.is_staff %}
+                    <a href="{% url 'home_usuario_admin' %}"><li class="list-group-item list-group-item-action"><i class="material-icons">build</i>Administração</li></a>
+                    {% endif %}
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 align="center">Novas Mensagens</h3>
+                <a href="{% url 'autorizar_mensagem' %}" class="btn btn-primary float-right">Ver mais</a>
+                <br>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th style="font-size:10pt;">Titulo</th>
+                                <th style="font-size:10pt;">Autorizado</th>
+                                <th style="font-size:10pt;">Usuário</th>
+                                <th style="font-size:10pt;">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for c in lista %}
+                            <tr>
+                                <td style="font-size:10pt;">{{ c.titulo }}</td>
+                                <td style="font-size:10pt;"><strong style="color:red">{{ c.autorizado }}</strong></td>
+                                <td style="font-size:10pt;">{{ c.usuario.user.username }}</td>
+                                <td style="font-size:10pt;">
+                                    <a title="Editar" href="#" data-toggle="modal" data-target="#mod{{ c.pk }}">
+                                    <i class="material-icons">edit</i>
+                                </a>
+
+                                <div class="modal fade" id="mod{{ c.pk }}" role="dialog">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <p><strong>{{ c.titulo }}</strong></p>
+                                                <textarea style="border-style:none;" class="form-control" readonly cols="10" rows="15">{{ c.mensagem }}</textarea>
+                                                <p>Usuário: {{ c.usuario.user.username }} | IP: {{ c.usuario.ip_celular }}</p>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a class="btn btn-primary" href="{% url 'editar_mensagem' c.pk %}">Autorizar</a>
+                                                <button type="button" data-dismiss="modal" class="btn btn-danger">Cancelar</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                    <!-- Confirmação de exclusão -->
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% with lista as paginated %}
+                    {% include "./pagination.html" %}
+                {% endwith %}
+            </div>
+        </div>
+        </div>
+    </div>
+<br>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 align="center">Estatísticas</h3>
+                    <div align="center" class="card-deck">
+                        <div class="card text-white bg-success mb-3 col-md-6">
+                            <div class="card-body">
+                                <h5><strong>Usuários cadastrados</strong></h5>
+                                <br>
+                                <p style="font-size: 60pt !important;">
+                                    <i class="material-icons" style="font-size: 60pt !important">people</i>
+                                    {{ usuario.count }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card text-white bg-danger mb-3 col-md-6">
+                            <div class="card-body">
+                                <h5><strong>Turmas cadastradas</strong></h5>
+                                <br>
+                                <p style="font-size: 60pt !important;">
+                                    <i class="material-icons" style="font-size: 60pt !important">meeting_room</i>
+                                    {{ turma.count }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card text-white bg-primary mb-3 col-md-6">
+                            <div class="card-body">
+                                <h5><strong>Mensagens enviadas</strong></h5>
+                                <br>
+                                <p style="font-size: 60pt !important;">
+                                    <i class="material-icons" style="font-size: 60pt !important">message</i>
+                                    {{ mensagem.count }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div align="center" class="card-deck">
+                        <div class="card text-white bg-success mb-3 col-md-6">
+                            <div class="card-body">
+                                <h5><strong>Mensagens autorizadas</strong></h5>
+                                <br>
+                                <p style="font-size: 60pt !important;">
+                                    <i class="material-icons" style="font-size: 60pt !important">checked</i>
+                                    {{ autorizados.count }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card text-white bg-danger mb-3 col-md-6">
+                            <div class="card-body">
+                                <h5><strong>Mensagens não autorizadas</strong></h5>
+                                <br>
+                                <p style="font-size: 60pt !important;">
+                                    <i class="material-icons" style="font-size: 60pt !important">meeting_room</i>
+                                    {{ nao_autorizados.count }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock conteudo %}

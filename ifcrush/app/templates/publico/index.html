@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <!--Import Google Icon Font-->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+        <link rel="stylesheet" href="{% static 'css/cover.css' %}">
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>IF CRUSH</title>
+
+
+
+
+    </head>
+
+    <body class="text-center">
+
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+            <header class="masthead mx-auto">
+                <div class="inner">
+                    <nav class="nav nav-masthead justify-content-center">
+                        <a class="nav-link active" href="{% url 'index_site' %}">Home</a>
+                        <a class="nav-link" href="{% url 'termos_uso' %}">Termos de Uso</a>
+                        <a class="nav-link" href="{% url 'politicas_privacidade' %}">Politica de Privacidade</a>
+                    </nav>
+                </div>
+            </header>
+
+            <main role="main" class="inner cover">
+
+                <img class="img-fluid" src="{% static 'images/logo500x.png' %}" alt="">
+
+                <h1 class="cover-heading">Bem vindo(a)!</h1>
+                <p class="lead">Leia nosso termos de uso e nossa politica de privacidade, se registre e se divirta com moderação :)</p>
+                <p class="lead">
+                    <a href="{% url 'registro_usuario' %}" class="btn btn-lg btn-primary">Registrar</a>
+                    <a href="{% url 'login_usuario' %}" class="btn btn-lg btn-success">Entrar</a>
+                </p>
+            </main>
+
+            <footer class="mastfoot mt-auto">
+                <div class="inner">
+                    <p>Cover template by <a href="https://twitter.com/mdo">@mdo</a>. Desenvolvido por Gabriel Silva</p>
+                </div>
+            </footer>
+        </div>
+
+
+
+
+        <!--JavaScript at end of body for optimized loading-->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+        <script src="{% static 'js/app.js' %}"></script>
+    </body>
+</html>

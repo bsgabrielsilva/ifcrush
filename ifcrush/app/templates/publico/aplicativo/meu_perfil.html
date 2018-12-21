@@ -1,0 +1,69 @@
+{% extends '../base.html' %}
+
+{% block titulo %}
+Perfil
+{% endblock titulo %}
+
+{% block conteudo %}
+<br>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="text-center"><strong>Minhas informações</strong><a class="btn btn-primary float-right" href="{% url 'editar_perfil' %}">
+                    <i class="material-icons">edit</i>
+                </a></h4>
+                <p><strong>Nome completo:</strong>{{ request.user.first_name }} {{ request.user.last_name }}<br>
+                    <strong>Apelido:</strong>{{ request.user.username }}<br>
+                    <strong>Email:</strong>{{ request.user.email }}<br>
+                    <strong>Data de Nascimento:</strong>{{ request.user.usuario.data_nascimento }}<br>
+                    <strong>Turma:</strong>{{ request.user.usuario.turma }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <br>
+        <div class="card">
+            <div class="card-body">
+                <h4 class="text-center"><strong>Minhas mensagens</strong></h4>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Título</th>
+                                <th scope="col">Autorizado?</th>
+                                <th scope="col">Feedback</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for m in mensagens %}
+                            <tr>
+                                <td>{{ m.titulo }}</td>
+                                <td>{% if m.autorizado == "Sim" %} <span style="color:green;">{{ m.autorizado }}</span>{% endif %}
+                                    {% if m.autorizado == "Em Análise" %} <span style="color:yellow;">{{ m.autorizado }}</span>{% endif %}
+                                    {% if m.autorizado == "Não" %} <span style="color:red;">{{ m.autorizado }}</span>{% endif %}
+                                </td>
+                                <td>{{ m.feedback }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td><p>Nenhuma mensagem encontrada!</p></td>
+                                <td><p>Nenhuma mensagem encontrada!</p></td>
+                                <td><p>Nenhuma mensagem encontrada!</p></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div><br>
+                {% with mensagens as paginated %}
+                        {% include "../pagination.html" %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock conteudo %}

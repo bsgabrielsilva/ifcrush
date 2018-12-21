@@ -1,0 +1,117 @@
+{% load staticfiles %}
+.navbar-django{background-color:#1b3280;-webkit-box-shadow:0 2px 4px rgba(0,0,0,.04);box-shadow:0 2px 4px rgba(0,0,0,.04)}
+.fundo-login { background: #1b3280 !important; color: white !important;}
+.fundo-login h1 { font-weight: 1000 !important; }
+.fundo-login h4 { font-weight: 1000 !important; }
+
+
+.icons-navbar {
+    color:white;
+    text-style:none;"
+}
+
+#app {
+
+    background-color: rgba(0,0,0,0.5);
+    width: 100% !important;
+    height: 100% !important;
+}
+.login-usuario {
+ color: white;
+
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.sidenav .user-view {
+    position: absolute;
+    display: inline-block;
+    top:0;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 0;
+    background-color: #ce93d8 !important;
+    height: 200px;
+}
+
+.sidenav .user-view .image-user {
+    text-align: center;
+    height: 150px;
+    font-size: 16pt;
+}
+
+.sidenav .itens-side {
+    position: absolute;
+    display: block;
+    width: 100%;
+    top: 200px;
+}
+
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #7b1fa2 !important; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #FFF;
+    display: block;
+    border-bottom: 2px solid #ce93d8;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.mensagem-titulo {
+    padding: 10px;
+    margin-bottom: 0;
+    color: white;
+    background-color: #ba68c8;
+    width: 100% !important;
+}
+
+.caixa-mensagem {
+    padding: 10px;
+    margin: 0;
+    background-color: #e1bee7;
+    width: 100%;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+    position: absolute;
+    border-style: none;
+    color: black;
+    top: 0;
+    font-size: 36px;
+    right: 10px;
+    text-align: right;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+

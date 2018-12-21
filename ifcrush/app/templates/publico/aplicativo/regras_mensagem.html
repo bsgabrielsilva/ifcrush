@@ -1,0 +1,35 @@
+{% extends '../base.html' %}
+{% block titulo %}
+Regras
+{% endblock titulo %}
+{% block conteudo %}
+<div class="row">
+    <div class="col-12">
+    <br>
+        <div class="card">
+            <div class="card-body">
+                <h4 class="text-center"><strong>Regras para mensagens</strong></h4>
+                <p>1 - O usuário só pode enviar <br>
+                    2 - Suas mensagens serão visualizadas por todos, como em um fórum. <br>
+                    3 - Não haverá interação privada entre usuários. <br>
+                    4 - As mensagens são de total responsabilidade do usuário. <br>
+                    5 - Se desejar interagir com usuário específico, deve citá-lo ou descrevê-lo em sua mensagem. <br>
+                    6 - Suas mensagens passarão por avaliação administrativa do aplicativo antes da publicação no rol de mensagens.
+                    <br>
+                    7 - Caso sua mensagem não seja autorizada, receberá uma mensagem com o motivo da não autorização para a publicação.
+                    <br>
+                    8 - Não serão autorizadas mensagens de cunho racista, homofóbico, nazista, fascista, ou que causem algum tipo de constrangimento a outrem.
+                    <br>
+                    9 - Para envio você pode colocar um título e escrever sua mensagem sem limite de caracteres, podendo direcioná-la referenciando seu crush através do apelido que ele adotou na plataforma.
+                    <br>
+                    10 - Não poderão ser enviadas fotos, gifs, vídeos através da ferramenta.</p>
+                <p>Ao clicar em "Eu concordo" você declara que leu as regras e está de acordo com elas.</p>
+                <a href="{% url 'enviar_mensagem' %}" class="btn btn-primary">Eu concordo</a>
+                <a href="{% url 'pagina_inicial' %}" class="btn btn-danger">Não concordo</a>
+            </div>
+        </div>
+    <br>
+    </div>
+</div>
+
+{% endblock conteudo %}

@@ -1,0 +1,40 @@
+{% extends './base.html' %}
+{% load static %}
+{% block titulo %}
+Administração autenticação
+{% endblock titulo %}
+
+{% block conteudo %}
+<div class="row">
+    <div class="col-md-4 col-12"></div>
+    <div class="col-md-4 col-12">
+        <div class="card fundo-login">
+            <div class="card-body text-center">
+                <h3>Autenticação</h3>
+                <br>
+                <form method="post" action="?next={{ redirect_to }}">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-12">
+
+                            <input class="form-control" type="text" name="username" placeholder="Usuário" required>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-12">
+
+                            <input class="form-control" type="password" name="password" placeholder="Senha" required>
+                        </div>
+                    </div>
+
+                    <br>
+                    <input type="submit" class="btn btn-success" value="Entrar">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-12"></div>
+</div>
+
+{% endblock conteudo %}

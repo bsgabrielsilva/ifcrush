@@ -1,0 +1,39 @@
+{% extends '../base.html' %}
+{% load staticfiles %}
+{% block titulo %}
+Mensagem
+{% endblock %}
+
+{% block conteudo %}
+<br>
+<div class="card" style="background:#ce93d8;">
+    <div class="card-body">
+        <div class="text-center">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12">
+                        <label style="color:white;" for="titulo">Título</label>
+                        {{ form.titulo }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label style="color:white;" for="mensagem">Mensagem</label>
+                        {{ form.mensagem }}
+                    </div>
+                </div>
+                <br>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success" >
+                        <i class="material-icons">send</i>
+                        Enviar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+
+{% endblock conteudo %}
